@@ -107,13 +107,34 @@ function Counter() {
             <div className="absolute inset-0 bg-black/40 z-0" />
             <div className="relative z-10 flex items-center justify-center flex-col">
               <div className="flex items-center justify-center gap-2 bg-black/60 rounded-2xl px-4 py-3 text-white">
-                <button onClick={() => handleModeChange("pomodoro")} className={`${mode === "pomodoro" ? "bg-[#FDFBD4] text-black px-4 rounded-xl" : ""}`}>
+                <button
+                  onClick={() => handleModeChange("pomodoro")}
+                  className={`${
+                    mode === "pomodoro"
+                      ? "bg-[#FDFBD4] text-black px-4 rounded-xl"
+                      : ""
+                  }`}
+                >
                   Pomodoro
                 </button>
-                <button onClick={() => handleModeChange("shortBreak")} className={`${mode === "shortBreak" ? "bg-[#FDFBD4] text-black px-4 rounded-xl" : ""}`}>
+                <button
+                  onClick={() => handleModeChange("shortBreak")}
+                  className={`${
+                    mode === "shortBreak"
+                      ? "bg-[#FDFBD4] text-black px-4 rounded-xl"
+                      : ""
+                  }`}
+                >
                   Short Break
                 </button>
-                <button onClick={() => handleModeChange("longBreak")} className={`${mode === "longBreak" ? "bg-[#FDFBD4] text-black px-4 rounded-xl" : ""}`}>
+                <button
+                  onClick={() => handleModeChange("longBreak")}
+                  className={`${
+                    mode === "longBreak"
+                      ? "bg-[#FDFBD4] text-black px-4 rounded-xl"
+                      : ""
+                  }`}
+                >
                   Long Break
                 </button>
               </div>
