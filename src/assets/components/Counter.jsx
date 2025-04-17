@@ -1,10 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 
-{
-  /* Tailwind safelist */
-}
-<div className="hidden bg-[url('/icons/clouds.jpg')] bg-[url('/icons/bluecloud.jpg')]" />;
-
 function Counter() {
   const [mode, setMode] = useState("pomodoro");
   const [secondsLeft, setSecondsLeft] = useState(0);
@@ -53,6 +48,7 @@ function Counter() {
   };
 
   const handleModeChange = (newMode) => {
+    setIsTimerPaused(false);
     if (newMode === "pomodoro") {
       setMode("pomodoro");
       setMinutesLeft(25);
@@ -94,7 +90,7 @@ function Counter() {
       <section>
         <div className="min-h-[80vh] flex items-center justify-center relative">
           <div
-            className="w-full min-h-[80vh] bg-top bg-cover bg-center transition-all duration-[3000ms] ease-in-out hover:bg-bottom relative flex items-center justify-center"
+            className="w-full min-h-[80vh] bg-top bg-cover transition-all duration-[3000ms] ease-in-out hover:bg-bottom relative flex items-center justify-center"
             style={{
               backgroundImage:
                 mode === "pomodoro"
