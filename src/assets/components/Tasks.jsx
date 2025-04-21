@@ -27,16 +27,16 @@ function Tasks() {
 
     setListOfTasks((prev) => [...prev, { ...newTasks, taskStatus: "todo" }]);
     setNewTasks({
-      taskName: newTasks.taskName.trim(),
+      taskName: "",
       taskStatus: "todo",
-      taskDescription: newTasks.taskDescription.trim() || "",
-      taskCycles: newTasks.taskCycles || 1,
+      taskDescription: "",
+      taskCycles: 1,
     });
   };
 
   const handleTaskDelete = () => {
-
-  }
+    
+  };
   return (
     <>
       <div className="bg-black flex items-center justify-center flex-col px-4 py-4">
@@ -49,8 +49,9 @@ function Tasks() {
                 <input
                   type="text"
                   placeholder="Task Name"
+                  value={newTasks.taskName}
                   className="w-full p-2 mb-4 rounded top-0"
-                  editable = "true"
+                  editable="true"
                   onChange={(e) =>
                     setNewTasks({ ...newTasks, taskName: e.target.value })
                   }
@@ -66,9 +67,10 @@ function Tasks() {
               <textarea
                 id="taskDescription"
                 name="taskDescription"
+                value={newTasks.taskDescription}
                 placeholder="Task Description"
                 className="w-full p-2 mb-4 px-2 py-2 rounded bg-gray-700 text-white"
-                editable = "true"
+                editable="true"
                 onChange={(e) =>
                   setNewTasks({ ...newTasks, taskDescription: e.target.value })
                 }
@@ -85,7 +87,7 @@ function Tasks() {
                   type="number"
                   min="1"
                   max="10"
-                  defaultValue="1"
+                  value={newTasks.taskCycles || "1"}
                   className="p-2 rounded bg-gray-700 text-white"
                   onChange={(e) =>
                     setNewTasks({
@@ -108,17 +110,27 @@ function Tasks() {
               </div>
             </div>
           </div>
-          <div>
-            <h2 className="text-white text-2xl font-bold">To-do List</h2>
-            <div>
+          <div className="flex items-center flex-col">
+            <h2 className="text-white text-2xl font-bold mb-3.5">To-do List</h2>
+            <div className="relative w-full">
               {listOfTasks.map((task, index) => (
                 <div
                   key={index}
-                  className="bg-gray-700 text-white rounded-xl p-4 my-2 shadow"
+                  className="absolute bg-gray-700 text-white rounded-xl shadow-md w-full transition-all duration-300 hover:-translate-y-4 hover:shadow-2xl"
+                  style={{
+                    transform: `translateY(${index * 40}px)`,
+                    zIndex: index,
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.zIndex = 999)}
+                  onMouseLeave={(e) => (e.currentTarget.style.zIndex = index)}
                 >
-                  <h3 className="text-xl font-semibold">{task.taskName}</h3>
+                  <div className={`${index % 2 == 0 ? ("bg-[#8A9A5B]") : ("bg-[#9F2B68]")} rounded-t-xl p-4`}>
+                    <h3 className="text-xl font-semibold">{task.taskName}</h3>
+                  </div>
+                  <div className="p-4">
                   <p className="text-sm italic">{task.taskDescription}</p>
                   <p className="text-sm">Cycles: {task.taskCycles}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -127,7 +139,8 @@ function Tasks() {
             <h2 className="text-white text-2xl font-bold">Completed Tasks</h2>
           </div>
         </div>
-      </div>a
+      </div>
+      a
     </>
   );
 }
