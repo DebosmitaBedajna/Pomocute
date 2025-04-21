@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Strawberry from "../icons/Strawberry.svg";
 
 function Tasks() {
-  const numberOfTasks = 0;
+  var numberOfTasks = useRef(0);
   const [listOfTasks, setListOfTasks] = useState([]);
   const [newTasks, setNewTasks] = useState({
     taskName: "",
@@ -26,6 +26,8 @@ function Tasks() {
     }
 
     setListOfTasks((prev) => [...prev, { ...newTasks, taskStatus: "todo" }]);
+    numberOfTasks.current=numberOfTasks.current+newTasks.taskCycles;
+    console.log("Number of tasks: ", numberOfTasks.current);
     setNewTasks({
       taskName: "",
       taskStatus: "todo",
@@ -34,9 +36,9 @@ function Tasks() {
     });
   };
 
-  const handleTaskDelete = () => {
+  // const handleTaskDelete = () => {
     
-  };
+  // };
   return (
     <>
       <div className="bg-black flex items-center justify-center flex-col px-4 py-4">
